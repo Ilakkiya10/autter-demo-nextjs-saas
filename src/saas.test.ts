@@ -20,7 +20,7 @@ describe("planted SaaS bugs", () => {
   test.fails("rejects expired invites", () => {
     expect(() => acceptInvite("expired-token")).toThrow(/expired/);
   });
-  test.fails("counts concurrent usage", async () => {
+  test("counts concurrent usage", async () => {
     const project = projects.find((p) => p.id === "prj_a")!;
     project.usage = 40;
     await Promise.all([recordUsage("prj_a", 1), recordUsage("prj_a", 1)]);
